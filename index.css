@@ -1,0 +1,10 @@
+h1 {
+	font-family: Satisfy , cursive;
+}
+
+.jumbotron {
+	background: url(imgs/header.jpeg);
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+}
