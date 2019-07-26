@@ -1,0 +1,35 @@
+body {
+    background: url(https://source.unsplash.com/2_KjpNXFl5M);
+    background-repeat: no-repeat;
+    background-size: cover;  
+    background-position: center; 
+/*    height: 100%;*/
+    /*color: rgb(37, 186, 137);*/
+    color: black;
+}
+
+html {
+    height: 100%;
+}
+
+h1 {
+    text-shadow: 0px 2px 2px black,
+                 0px 2px 6px black;  
+}
+
+h4 {
+    text-shadow: 0px 2px 2px black;
+}
+#special {
+	text-align: center;
+	padding-top: 20%; 
+}
+
+.navbar-brand {
+	font-family: 'Satisfy', cursive;
+}
+
+hr {
+	width: 400px;
+	border: 2px solid rgb(29, 31, 30);
+}
