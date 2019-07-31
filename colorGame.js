@@ -1,4 +1,3 @@
-// alert("connected!");
 var numSquares = 6;
 var colors = randomColorGenerator(numSquares);
 var squares = document.querySelectorAll(".square");
@@ -7,29 +6,65 @@ var heading = document.querySelector("h1");
 var message = document.querySelector("#message");
 var selected = selectRandom();
 var reset = document.querySelector("#reset");
-var easyBtn = document.querySelector("#easyBtn");
-var hardBtn = document.querySelector("#hardBtn");
+var btn = document.querySelectorAll(".mode");
 
 guess.textContent = selected;
 
-for(var i=0; i<squares.length; i++) {
-	// set a color from the list
-	squares[i].style.backgroundColor = colors[i];
-	// alert("selected");
+init();
 
-	// set the listener to select square
-	squares[i].addEventListener("click" , function() {
-		// path to correct selection
-		if(this.style.backgroundColor === selected) {
-			changeColor(selected);
-			message.textContent = "Correct";
-			heading.style.backgroundColor = selected;	
-		} else {
-			this.style.backgroundColor = "#232323";
-			message.textContent = "Try Again";
-		}
+function init() {
+	setSquare();
+	setButtonListner();
+	reset.addEventListener("click" , function() {
+		resetfun();
 	});
+	resetfun();
 }
+
+function setSquare() {
+	for(var i=0; i<squares.length; i++) {
+		squares[i].addEventListener("click" , function() {
+			// condition for color selection
+			if(this.style.backgroundColor === selected) {
+				changeColor(selected);
+				message.textContent = "Correct";
+				heading.style.backgroundColor = selected;	
+			} else {
+				this.style.backgroundColor = "#232323";
+				message.textContent = "Try Again";
+			}
+		});
+	}
+}
+
+function setButtonListner() {
+	for(var i=0; i<btn.length; i++) {
+		btn[i].addEventListener("click" , function () {
+			btn[0].classList.remove("selected");
+			btn[1].classList.remove("selected");
+			this.classList.add("selected");
+			this.textContent === "Easy" ? numSquares = 3 : numSquares = 6;
+			resetfun();
+		});
+	}
+}
+
+function resetfun() {
+	colors = randomColorGenerator(numSquares);
+	selected = selectRandom();
+	guess.textContent = selected;
+	for(var i=0; i<squares.length; i++) {
+		if(colors[i]) {
+			squares[i].style.display = "block";
+			squares[i].style.backgroundColor = colors[i];
+		} else {
+			squares[i].style.display = "none";
+		}
+	}
+	message.textContent = "";
+	heading.style.backgroundColor = "steelBlue";
+}
+
 
 function changeColor(color) {
 	for(var i=0; i<squares.length; i++) {
@@ -58,64 +93,3 @@ function randomColor() {
 	var b = Math.floor(Math.random() *256);
 	return "rgb(" + r + ", " + g + ", " + b +")";
 }
-
-reset.addEventListener("click" , function() {
-	resetfun();
-});
-
-function resetfun() {
-	//	generate new colors
-	colors = randomColorGenerator(6);
-	// new colors are set to square
-	for(var i=0; i<colors.length; i++) {
-		squares[i].style.backgroundColor = colors[i];
-	}
-
-	//	pick new color for selected
-	selected = selectRandom();
-	// guess change to new selected
-	guess.text = selected;
-
-	//	change color of h1 
-	heading.style.backgroundColor = "steelBlue";
-
-	//	change message
-	message.textContent = "";
-
-	//	change reset button text to play again
-	reset.textContent = "New Colors?";
-}
-
-easyBtn.addEventListener("click" , function() {
-	easyBtn.classList.toggle("selected");
-	hardBtn.classList.toggle("selected");
-	numSquares = 3;
-	colors = randomColorGenerator(numSquares);
-	selected = selectRandom();
-	guess.textContent = selected;
-	for(var i=0; i<squares.length; i++) {
-		if(colors[i])
-			squares[i].style.backgroundColor = colors[i];
-		else
-			squares[i].style.display = "none";
-	}
-	message.textContent = "";
-	heading.style.backgroundColor = "steelBlue";
-
-
-});
-
-hardBtn.addEventListener("click" , function() {
-	easyBtn.classList.toggle("selected");
-	hardBtn.classList.toggle("selected");
-	numSquares = 6;
-	colors = randomColorGenerator(numSquares);
-	selected = selectRandom();
-	guess.textContent = selected;
-	for(var i=0; i<squares.length; i++) {
-			squares[i].style.backgroundColor = colors[i];
-			squares[i].style.display = "block";
-	}
-	message.textContent = "";
-	heading.style.backgroundColor = "steelBlue";
-});
