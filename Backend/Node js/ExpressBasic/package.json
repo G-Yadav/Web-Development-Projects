@@ -1,0 +1,14 @@
+{
+  "name": "expressbasic",
+  "version": "1.0.0",
+  "description": "Express Basic Exercise from the web developer bootcamp by colt steele",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "MackLov",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}

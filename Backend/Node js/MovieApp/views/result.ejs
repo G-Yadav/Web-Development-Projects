@@ -1,0 +1,11 @@
+<h1>Movies are:</h1>
+
+<ul>
+    <% data.Search.forEach((movie)=> { %>
+        <li>
+            <strong><%=movie.Title%></strong> <div> <img src = <%= movie.Poster  %> alt=""> </div>
+        </li>
+    <% }); %>
+</ul>
+
+<a href="/">Back To Home</a>
