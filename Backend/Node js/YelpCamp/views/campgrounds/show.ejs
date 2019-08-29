@@ -1,0 +1,58 @@
+<% include ../partials/header %>
+<div class="container">
+
+    <div class="row">
+
+        <div class="col-md-3">
+            <ul class="list-group">
+                <li class="list-group-item active">Info 1</li>
+                <li class="list-group-item">Info 2</li>
+                <li class="list-group-item">Info 3</li>
+            </ul>
+        </div>
+
+        <div class="col-md-9">
+            <div class="img-thumbnail">
+                <img class="img-fluid" src="<%= campground.image %>" alt="">
+                <div class="card-body">
+                    <h4 class="float-right">$90.00/Night</h4>
+                    <h4><%= campground.name %></h4>
+                    <p><%= campground.description %></p>
+                </div>
+            </div>
+            <div class="card card-body bg-light mt-3">
+                <a class="btn btn-md btn-success float-right" href="/campgrounds/<%= campground._id %>/comments/new">Add Comment</a>
+                <hr>
+                <% campground.comments.forEach((comment)=>{ %>
+                    <div>
+                        <span class="float-right">DATE</span>
+                        <strong><%= comment.author %></strong>
+                        <p>
+                            <%= comment.text %>
+                        </p> 
+                    </div>
+                <% }); %>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<% include ../partials/footer %>

@@ -1,4 +1,4 @@
-<% include partials/header %>
+<% include ../partials/header %>
 <div class="container">
     <div class="jumbotron">
         <div class="container">
@@ -10,7 +10,7 @@
     <div class="d-flex flex-row mb-3 flex-wrap justify-content-left mb-2">
     <% campgrounds.forEach((campground)=>{ %>
         <div class="card col-lg-3 col-md-4 col-sm-6 col-12 p-0 mb-2" style="width: 20rem; ">
-            <img class="card-img-top m-0" src="<%= campground.image %>" alt="camp photo">
+            <img class="card-img-top img-fluid m-0" src="<%= campground.image %>" alt="camp photo">
             <div class="card-body">
                 <p class="card-title"><%= campground.name %></p>
                 <a href="/campgrounds/<%=campground._id%>" class="btn btn-primary">Go somewhere</a>
@@ -20,4 +20,4 @@
     </div>
 </div>
     
-<% include partials/footer.ejs %>
+<% include ../partials/footer.ejs %>

@@ -1,0 +1,18 @@
+body {
+    background-color: blueviolet;
+}
+
+.img-fluid {
+    width: 100%;
+}
+
+.img-thumbnail {
+    padding: 0px;
+    margin: 0px;
+}
+
+#footer {
+    border-radius: 0px;
+    margin: 2rem 0 0 0;
+    padding: 1rem; 
+}
