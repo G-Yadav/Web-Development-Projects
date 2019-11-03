@@ -34,6 +34,21 @@ router.get("/new",isLoggedIn, (req, res) => {
     res.render("campgrounds/newCampground");
 });
 
+
+router.put("/:id", (req, res)=>{
+    console.log(`PUT /campgrounds/${req.params.id}`);
+    Campground.findByIdAndUpdate(req.params.id, req.body.camp , (err , UpdatedCampground)=> {
+        if(err) {
+            console.log("Oops! Error " + err);
+            res.redirect("/campgrounds");
+        } else {
+            res.redirect(`/campgrounds/${req.params.id}`);
+        }
+    });
+});
+
+
+
 router.get("/:id", (req, res)=> {
     console.log(`GET /campgrounds/${req.params.id}`);
     Campground.findById(req.params.id).populate("comments").exec((err, campground)=>{
@@ -41,6 +56,29 @@ router.get("/:id", (req, res)=> {
             console.log("Opps! Error" + err);
         } else {
             res.render("campgrounds/show", {campground: campground});
+        }
+    });
+});
+
+
+router.get("/:id/edit", (req , res)=> {
+    console.log(`GET /campgrounds/${req.params.id}/edit`);
+    Campground.findById(req.params.id, (err , foundCampground)=> {
+        if(err) {
+            console.log("Oops! Error" + err);
+        } else {
+            res.render("campgrounds/edit", {campground : foundCampground});
+        }
+    });
+}); 
+
+router.delete("/:id" , (req, res)=> {
+    console.log(`Delete /campgrounds/${req.params.id}`);
+    Campground.findByIdAndDelete(req.params.id, (err, DeletedCampground)=> {
+        if(err) {
+            console.log("Oops! Error " + err);
+        } else {
+            res.redirect("/campgrounds");
         }
     });
 });

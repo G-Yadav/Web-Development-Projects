@@ -6,6 +6,7 @@ var express        = require("express"),
     seedDB         = require("./seed"),
     passport       = require("passport"),
     passportLocal  = require("passport-local"),
+    methodOverride = require("method-override"),
     campgroundRoute= require("./routes/campgrounds"),
     commentsRoute  = require("./routes/comments"),
     authRoute      = require("./routes/auth"); 
@@ -26,19 +27,20 @@ app.use((req,res,next)=>{
     res.locals.currentUser = req.user;
     next();
 });
+app.use(methodOverride('_method'));
 
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 // Database connection code
-mongoose.connect('mongodb://localhost:27017/yelp_camp', {useNewUrlParser: true});
+mongoose.connect('mongodb://localhost:27017/yelp_camp', {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify:false});
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
     console.log("We are connected to database!!");
 });
 
-seedDB(); // Seed the database
+// seedDB(); // Seed the database
 
 app.use("/campgrounds", campgroundRoute);
 app.use("/campgrounds/:id/comments",commentsRoute);
